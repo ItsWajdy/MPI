@@ -90,6 +90,16 @@ int main(int argc, char* argv[]) {
 		}
 
 		cout << "Parallel Time: " << (clock() - start) / (double)(CLOCKS_PER_SEC / 1000) << "ms" << endl;
+
+
+		// Serial timing
+		start = clock();
+		for (int i = 0; i < districts; i++) {
+			for (int j = 0; j < total[i]; j++) {
+				Sleep(1000 * avgTime[i]);
+			}
+		}
+		cout << "Serial Time: " << (clock() - start) / (double)(CLOCKS_PER_SEC / 1000) << "ms" << endl;
 	}
 	else if (myRank >= 1 && myRank <= N) {       // District
 		int reps = 0;
