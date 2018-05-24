@@ -11,7 +11,7 @@ void serve(int representitives, int servees, double avgTime, int tag) {
 	while (served < servees) {
 		char message;
 		for (int i = 1; i <= representitives && served + i <= servees; i++) MPI_Send(&avgTime, 1, MPI_DOUBLE, i, tag, MPI_COMM_WORLD);
-		for (int i = 1; i <= representitives; i++) MPI_Recv(&message, 1, MPI_CHAR, i, tag, MPI_COMM_WORLD, &status);
+		for (int i = 1; i <= representitives && served + i <= servees; i++) MPI_Recv(&message, 1, MPI_CHAR, i, tag, MPI_COMM_WORLD, &status);
 		served += representitives;
 	}
 }
@@ -21,7 +21,7 @@ int main(int argc, char* argv[]) {
 
 	int numTasks = -1;
 	int myRank = -1;
-	
+
 	MPI_Comm_size(MPI_COMM_WORLD, &numTasks);
 	MPI_Comm_rank(MPI_COMM_WORLD, &myRank);
 
@@ -58,7 +58,7 @@ int main(int argc, char* argv[]) {
 		cout << "Sequential Time: " << (clock() - start) / (double)(CLOCKS_PER_SEC / 1000) << "ms" << endl;
 
 		double terminateFlag = -1;
-		for (int i = 1; i <= representitives; i++) MPI_Send(&terminateFlag, 1, MPI_DOUBLE, i, tag, MPI_COMM_WORLD);
+		for (int i = 1; i < numTasks; i++) MPI_Send(&terminateFlag, 1, MPI_DOUBLE, i, tag, MPI_COMM_WORLD);
 	}
 	else {
 		while (true) {

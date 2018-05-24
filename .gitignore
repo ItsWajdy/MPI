@@ -11,3 +11,4 @@ x64/Debug/MPI.tlog/link.command.1.tlog
 *.idb
 *.tlog
 *.pdb
+*.log
