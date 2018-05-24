@@ -1,0 +1,13 @@
+
+*.filters
+*.vcxproj
+x64/Debug/MPI.log
+x64/Debug/MPI.tlog/CL.read.1.tlog
+x64/Debug/MPI.tlog/CL.command.1.tlog
+x64/Debug/MPI.tlog/CL.write.1.tlog
+x64/Debug/MPI.tlog/link.write.1.tlog
+x64/Debug/Source.obj
+x64/Debug/MPI.tlog/link.command.1.tlog
+*.idb
+*.tlog
+*.pdb
